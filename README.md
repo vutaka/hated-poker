@@ -1,8 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# 何これ
+
+ゴキ◯リポーカーの完全パクリゲーム
+
+ルールは[リンク先参照](http://www.mobius-games.co.jp/DreiMagier/KakerLakenPoker.htm)
+
+## やりたかったこと
+
+[やりたかったことはこちら（仕様とか技術要素）](./src/docs/やりたかったこと.md)
+
+## 作りのあれこれ
+
+[作りのあれこれはこちら（作ってる時に考えたこと思ったこと）](./src/docs/作りのあれこれ.md)
+
+---
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `yarn storybook`
+
+start storybook.
 
 ### `yarn start`
 
