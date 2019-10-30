@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "../src/components/atoms/Button";
-import "modern-css-reset"
 
 export default { title: "Button" };
 
