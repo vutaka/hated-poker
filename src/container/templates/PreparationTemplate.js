@@ -7,7 +7,7 @@ export function PreparationTemplate(props) {
     <>
       <Header title={props.title}/>
       <ContentPanel>
-        {props.child}
+        {props.children}
       </ContentPanel>
     </>
   )

@@ -5,7 +5,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat($gridColumnNum, 1fr);
-  
+  margin-bottom: 40px;
   align-items: center;
   .label {
     grid-column-start: 3;
