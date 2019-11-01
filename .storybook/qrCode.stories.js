@@ -5,5 +5,5 @@ export default { title: "QRCode" };
 
 export const withValue = () => {
   const url = "https://github.com/";
-  return <QRCode encodedURL={url} />;
+  return (<div style={{width: "100px"}}><QRCode encodedURL={url} /></div>);
 };
