@@ -1,0 +1,17 @@
+@import "../atoms/Button.module.scss";
+
+.text_copy_wrapper {
+  position: relative;
+  height: auto;
+  display: inline-block;
+  .copy_source {
+    position: relative;
+  }
+
+  .action_button {
+    position: absolute;
+    top: -$buttonDeppari;
+    right: 0;
+    height: 33px;
+  }
+}

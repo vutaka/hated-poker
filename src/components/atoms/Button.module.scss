@@ -9,6 +9,7 @@ $buttonDeppari: 4px;
   color: $subColor;
   border: 0;
   border-bottom: $buttonDeppari $main2Color solid;
+  box-sizing: content-box;
   cursor: pointer;
 
   width: 100px;

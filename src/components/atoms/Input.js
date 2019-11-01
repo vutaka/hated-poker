@@ -1,5 +1,6 @@
 import React, { useRef, useImperativeHandle, forwardRef } from "react";
 import styles from "./Input.module.scss";
+import classNames from "classnames";
 
 export function Input(props, ref) {
   const inputEl = useRef(null);
@@ -10,9 +11,10 @@ export function Input(props, ref) {
   }));
   return (
     <input
-      className={styles.input}
+      className={classNames(styles.input, props.additionalClass)}
       ref={inputEl}
       {...props} />
   )
 }
+// eslint-disable-next-line no-func-assign
 Input = forwardRef(Input);
