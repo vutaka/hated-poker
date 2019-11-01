@@ -1,0 +1,13 @@
+@import "../../style/value/colors";
+
+.app_header{
+  width: 100vw;
+  height: 100px;
+  position: fixed;
+  background-color: $mainColor;
+  color: $subColor;
+  h1 {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+}
