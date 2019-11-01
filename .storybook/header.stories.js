@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../src/container/organisms/Header"
+import { Header } from "../src/components/molecules/Header"
 
 export default { title: "Header" };
 

@@ -3,7 +3,11 @@
 .app_header{
   width: 100vw;
   height: 100px;
-  position: fixed;
+  box-shadow: 0px 3px 6px $shadowColor;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
   background-color: $mainColor;
   color: $subColor;
   h1 {
