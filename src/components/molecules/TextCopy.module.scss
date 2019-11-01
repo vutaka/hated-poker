@@ -3,7 +3,9 @@
 .text_copy_wrapper {
   position: relative;
   height: auto;
+  width: 100%;
   display: inline-block;
+
   .copy_source {
     position: relative;
   }
