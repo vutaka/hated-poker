@@ -2,7 +2,7 @@ import React, {useRef} from "react"
 import {Input} from "../atoms/Input"
 import {Button} from "../atoms/Button"
 
-export function TextCopyBox(props) {
+export function TextCopy(props) {
   const inputEl = useRef(null);
   const copyText = () => {
     inputEl.current.select();
