@@ -1,5 +1,5 @@
 import React from "react";
-import { QRCode } from "../src/components/atoms/QRCode";
+import { QRCode } from "../src/presenter/atoms/QRCode";
 
 export default { title: "QRCode" };
 

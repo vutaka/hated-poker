@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Input } from "../src/components/atoms/Input";
+import { Input } from "../src/presenter/atoms/Input";
 
 export default { title: "Input" };
 

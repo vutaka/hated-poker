@@ -1,5 +1,5 @@
 import React from "react";
-import { PreparationTemplate } from "../src/container/templates/PreparationTemplate";
+import { PreparationTemplate } from "../src/presenter/templates/PreparationTemplate";
 
 export default { title: "PreparationTemplate" };
 

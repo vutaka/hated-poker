@@ -1,5 +1,5 @@
 import React from "react";
-import { GameCreate } from "../src/container/pages/GameCreate";
+import { GameCreate } from "../src/presenter/pages/GameCreate";
 
 export default { title: "GameCreate" };
 

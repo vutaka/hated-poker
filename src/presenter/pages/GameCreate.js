@@ -1,10 +1,10 @@
 import React from "react";
 import { PreparationTemplate } from "../templates/PreparationTemplate";
-import { Field } from "../../components/atoms/Field";
-import { Input } from "../../components/atoms/Input";
-import { SelectForList } from "../../components/atoms/SelectForList";
-import { ButtonField } from "../../components/atoms/ButtonField";
-import { Button } from "../../components/atoms/Button";
+import { Field } from "../atoms/Field";
+import { Input } from "../atoms/Input";
+import { SelectForList } from "../atoms/SelectForList";
+import { ButtonField } from "../atoms/ButtonField";
+import { Button } from "../atoms/Button";
 
 export function GameCreate() {
   const list = Array.from(Array(5), (v, k) => {return {value: k + 2, text: (k + 2) + "人"}});

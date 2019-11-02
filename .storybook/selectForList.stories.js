@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SelectForList } from "../src/components/atoms/SelectForList";
+import { SelectForList } from "../src/presenter/atoms/SelectForList";
 
 export default { title: "Select" };
 

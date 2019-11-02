@@ -1,5 +1,5 @@
 import React from "react";
-import { TextCopy } from "../src/components/molecules/TextCopy";
+import { TextCopy } from "../src/presenter/molecules/TextCopy";
 
 export default { title: "TextCopy" };
 

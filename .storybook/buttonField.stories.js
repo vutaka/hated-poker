@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "../src/components/atoms/Button";
-import { ButtonField } from "../src/components/atoms/ButtonField";
+import { Button } from "../src/presenter/atoms/Button";
+import { ButtonField } from "../src/presenter/atoms/ButtonField";
 
 export default { title: "ButtonField" };
 

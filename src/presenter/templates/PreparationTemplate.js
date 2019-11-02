@@ -1,6 +1,6 @@
 import React from "react";
-import { Header } from "../../components/molecules/Header";
-import {ContentPanel} from "../../components/atoms/ContentPanel";
+import { Header } from "../molecules/Header";
+import {ContentPanel} from "../atoms/ContentPanel";
 
 export function PreparationTemplate(props) {
   return(

@@ -1,6 +1,6 @@
 import React from "react";
-import { Field } from "../src/components/atoms/Field"
-import { Input } from "../src/components/atoms/Input";
+import { Field } from "../src/presenter/atoms/Field"
+import { Input } from "../src/presenter/atoms/Input";
 
 export default { title: "Field" };
 
