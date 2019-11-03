@@ -15,7 +15,7 @@ export function TextCopy(props) {
         value={props.value}
         readOnly={true}
         ref={inputEl}
-        additionalClass={styles.copy_source} />
+        additionalclass={styles.copy_source} />
       <Button
         onClick={copyText}
         additionalClass={styles.action_button}>

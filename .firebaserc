@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "hated-poker"
+    "default": "hated-poker",
+    "product": "hated-poker"
   }
 }
