@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "modern-css-reset";
 import './style/global.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
