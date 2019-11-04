@@ -13,7 +13,12 @@ export class GameRepository {
   }
 
   static addPlayer(gameId, player) {
-    const db = new FirebaseDb("game/" + gameId );
+    const db = new FirebaseDb("game/" + gameId + "/players" );
     return db.register(player);
+  }
+
+  static listenPlayers(gameId, callback) {
+    const db = new FirebaseDb("game/" + gameId + "/players" );
+    db.listenAllOnAdded(callback);
   }
 }

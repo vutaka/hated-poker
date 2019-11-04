@@ -1,19 +1,19 @@
 export class Game {
-  constructor(ownerName, playersNum) {
-    this.playersNum = playersNum;
+  constructor(ownerName, playersNum, id = null) {
     this.ownerName = ownerName;
-    this.players = {aa: "あああ"};
+    this.playersNum = playersNum;
+    this.id = id;
   }
 
-  getId() {
-    return this.id;
-  }
-
-  getPlayers() {
-    return this.players;
+  getOwnerName() {
+    return this.ownerName;
   }
 
   getPlayersNum() {
     return this.playersNum;
+  }
+
+  getId() {
+    return this.id;
   }
 }

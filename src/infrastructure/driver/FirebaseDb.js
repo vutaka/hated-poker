@@ -5,8 +5,8 @@ export class FirebaseDb {
     this.ref = firebaseApp.database().ref(refName);
   }
 
-  async register(game) {
-    const id = await this.ref.push(game).key;
+  async register(obj) {
+    const id = await this.ref.push(obj).key;
     return id;
   }
 
@@ -18,5 +18,11 @@ export class FirebaseDb {
   async readChild(childId) {
     const result = await this.ref.child(childId).once("value");
     return result.val();
+  }
+
+  listenAllOnAdded(callback) {
+    this.ref.on("child_added", (newSnapshot) => {
+      callback(newSnapshot.val());
+    })
   }
 }

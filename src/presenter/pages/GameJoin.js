@@ -22,7 +22,7 @@ export function GameJoin(props) {
 
   const joinGame = () => {
     GameCreateUseCase.join(props.match.params.gameId, myName).then((myId) => {
-      console.log(myId);
+      props.history.push("/join/" + props.match.params.gameId + "/complete");
     })
   }
   return (
