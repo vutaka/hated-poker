@@ -3,22 +3,22 @@ import { FirebaseDb } from "../infrastructure/driver/FirebaseDb";
 export class GameRepository {
 
   static register(game) {
-    const db = new FirebaseDb("game");
-    return db.register(game);
+    const dbRef = new FirebaseDb("game");
+    return dbRef.register(game);
   }
 
   static find(gameId) {
-    const db = new FirebaseDb("game/" + gameId );
-    return db.readAll();
+    const dbRef = new FirebaseDb("game/" + gameId );
+    return dbRef.readAll();
   }
 
   static addPlayer(gameId, player) {
-    const db = new FirebaseDb("game/" + gameId + "/players" );
-    return db.register(player);
+    const dbRef = new FirebaseDb("game/" + gameId + "/players" );
+    return dbRef.register(player);
   }
 
   static listenPlayers(gameId, callback) {
-    const db = new FirebaseDb("game/" + gameId + "/players" );
-    db.listenAllOnAdded(callback);
+    const dbRef = new FirebaseDb("game/" + gameId + "/players" );
+    dbRef.listenAllOnAdded(callback);
   }
 }

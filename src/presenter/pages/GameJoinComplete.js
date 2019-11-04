@@ -4,6 +4,7 @@ import { PreparationTemplate } from "../templates/PreparationTemplate";
 import { Field } from "../atoms/Field";
 import { GameRepository } from "../../repository/GameRepository";
 import { Message } from "../atoms/Message";
+import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 
 const reducer = (state, action) => {
   return [...state, action];
@@ -14,15 +15,16 @@ export function GameJoinComplete(props) {
   const [players, dispatch] = useReducer(reducer, new Array(0));
 
   useEffect(() => {
-    GameRepository.find(props.match.params.gameId).then((game) => {
+    GameCreateUseCase.load(props.match.params.gameId).then((game) => {
       setOwnerName(game.ownerName);
     });
+    
     GameRepository.listenPlayers(props.match.params.gameId, dispatch);
   }, [props.match.params.gameId]);
 
   return (
     <PreparationTemplate title="ゲームを主催する">
-      <Message text={"全員が揃うのをお待ちください" + "が参加中"} />
+      <Message text={"全員が揃うのをお待ちください。" + players.length + "が参加中"} />
       <Field label="開催者">
         {ownerName}
       </Field>

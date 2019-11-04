@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { PreparationTemplate } from "../templates/PreparationTemplate";
 import { Field } from "../atoms/Field";
-import { TextCopy } from "../molecules/TextCopy";
 import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
-import { QRCode } from "../atoms/QRCode";
-import { GameRepository } from "../../repository/GameRepository";
 import { ButtonField } from "../atoms/ButtonField";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
@@ -15,7 +12,7 @@ export function GameJoin(props) {
   const [myName, setMyName] = useState("");
 
   useEffect(() => {
-    GameRepository.find(props.match.params.gameId).then((game) => {
+    GameCreateUseCase.load(props.match.params.gameId).then((game) => {
       setOwnerName(game.ownerName);
     });
   }, [props.match.params.gameId]);

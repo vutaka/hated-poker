@@ -10,7 +10,7 @@ export class GameCreateUseCase {
   }
 
   static load(gameId) {
-    return GameRepository.readChild(gameId);
+    return GameRepository.find(gameId);
   }
   static join(gameId, name) {
     const player = new Player(name);
