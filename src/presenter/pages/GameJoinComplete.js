@@ -6,8 +6,7 @@ import { GameRepository } from "../../repository/GameRepository";
 import { Message } from "../atoms/Message";
 
 const reducer = (state, action) => {
-  state.push(action);
-  return state;
+  return [...state, action];
 };
 
 export function GameJoinComplete(props) {
@@ -29,7 +28,7 @@ export function GameJoinComplete(props) {
       </Field>
       <Field label="参加者">
         {players.map((player, index) => (
-          <span key={index}>{player.name}<br/></span>
+          <span key={index}>{player.name}<br /></span>
         ))}
       </Field>
     </PreparationTemplate>
