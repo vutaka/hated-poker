@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PreparationTemplate } from "../templates/PreparationTemplate";
 import { Field } from "../atoms/Field";
 import { Input } from "../atoms/Input";
@@ -7,17 +7,17 @@ import { ButtonField } from "../atoms/ButtonField";
 import { Button } from "../atoms/Button";
 import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 
+const list = Array.from(Array(5), (v, k) => { return { value: k + 2, text: (k + 2) + "人" } });
+
 export function GameCreate(props) {
-  const list = Array.from(Array(5), (v, k) => { return { value: k + 2, text: (k + 2) + "人" } });
   const [name, setName] = useState("");
   const [playersNum, setPlayersNum] = useState(2);
-
   const createGame = () => {
-    const useCase = new GameCreateUseCase();
-    useCase.create(name, playersNum).then((id) => {
+    GameCreateUseCase.create(name, playersNum).then((id) => {
       props.history.push("/create/" + encodeURI(id));
     });
   };
+
   return (
     <PreparationTemplate title="ゲームを主催する">
       <Field label="あなたのあだ名">

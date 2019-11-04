@@ -10,8 +10,13 @@ export class FirebaseDb {
     return id;
   }
 
-  async read(id) {
-    const result = await this.ref.child(id).once("value");
+  async readAll() {
+    const result = await this.ref.once("value");
+    return result.val();
+  }
+
+  async readChild(childId) {
+    const result = await this.ref.child(childId).once("value");
     return result.val();
   }
 }

@@ -5,7 +5,7 @@ export function SelectForList(props) {
   return (
     <select className={styles.select} value={props.value} onChange={props.onChange}>
       {props.list.map(element =>
-        (<option value={element.value}>{element.text}</option>)
+        (<option value={element.value} key={element.value}>{element.text}</option>)
       )}
     </select>
   )

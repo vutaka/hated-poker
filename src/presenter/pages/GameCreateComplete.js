@@ -6,7 +6,6 @@ import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 import { QRCode } from "../atoms/QRCode";
 
 export function GameCreateComplete(props) {
-
   const invitationURL = document.location.origin + "/join/" + props.match.params.gameId;
   
   return (
@@ -19,7 +18,6 @@ export function GameCreateComplete(props) {
         <QRCode
           encodedURL={invitationURL}/>
       </Field>
-
     </PreparationTemplate>
   )
 }

@@ -1,14 +1,19 @@
 import { FirebaseDb } from "../infrastructure/driver/FirebaseDb";
-import { Game } from "../domain/Game";
 
 export class GameRepository {
-  
-  /**
-   * Gameを登録する
-   * @param {Game} game 
-   */
+
   static register(game) {
     const db = new FirebaseDb("game");
     return db.register(game);
+  }
+
+  static find(gameId) {
+    const db = new FirebaseDb("game/" + gameId );
+    return db.readAll();
+  }
+
+  static addPlayer(gameId, player) {
+    const db = new FirebaseDb("game/" + gameId );
+    return db.register(player);
   }
 }
