@@ -1,12 +1,12 @@
 @import "../../style/value/colors";
 
-$indicatorDeppari: 70px;
+$indicatorDeppari: 60px;
 $indicatorHeight: 50px;
 
 .stepIndicator {
   position: relative;
   height: $indicatorHeight;
-  width: calc(100% - #{$indicatorDeppari + 10px});
+  width: calc(100% - #{$indicatorDeppari + 20px});
   margin-left: $indicatorDeppari;
   background-color: $pastColor;
   &.current {

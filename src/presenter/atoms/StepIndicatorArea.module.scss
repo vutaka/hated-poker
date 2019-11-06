@@ -1,0 +1,14 @@
+@import "../../style/value/colors";
+
+$indicatorDeppari: 70px;
+$indicatorHeight: 50px;
+
+.area {
+  max-width: 1000px;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row: 2;
+  row-gap: 20px;
+  align-items: center;
+}
