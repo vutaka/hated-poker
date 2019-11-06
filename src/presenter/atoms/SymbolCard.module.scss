@@ -1,0 +1,109 @@
+@import "../../style/value/colors";
+@import "../../style/value/ratios";
+
+$normalSize: 80px;
+$smallSize: 35px;
+
+.card {
+  position: relative;
+  width: $normalSize;
+  height: $normalSize * $silverRatio;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+  &.small {
+    width: $smallSize;
+    height: $smallSize * $silverRatio;
+  }
+  & div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 5%;
+    box-shadow: 3px 3px 6px $shadowColor;
+    backface-visibility: hidden;
+  }
+}
+// デフォルトでは表が隠れた状態
+.front {
+  background-color: $cardColor;
+  transform: rotateY(180deg);
+}
+.back {
+  background-color: $backGroundColor;
+}
+.open {
+  transform: rotateY(180deg);
+}
+.rat {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🐭";
+  }
+}
+.dog {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🐶";
+  }
+}
+.snake {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🐍";
+  }
+}
+.jellyfish {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "海月";
+  }
+}
+.bat {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🦇";
+  }
+}
+.deer {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🦌";
+  }
+}
+.shark {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🦈";
+  }
+}
+.crow {
+  display: table;
+  &:after {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    content: "🦅";
+  }
+}
