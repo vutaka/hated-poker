@@ -1,13 +1,17 @@
 import React from "react";
 import styles from "./StepIndicator.module.scss";
+import classnames from "classnames"
 
 export function StepIndicator(props) {
     return (
-        <span className={styles.stepIndicator}>
-            <span className={styles.shapes}>
-                <span className="progress-title">{props.text}</span>
+        <div className={classnames(styles.stepIndicator, { [styles.current]: props.isCurrent })}>
+            <span className={styles.title}>
+                {props.title}
             </span>
-        </span>
+            <span className={styles.text}>
+                {props.text}
+            </span>
+        </div>
     )
 }
 

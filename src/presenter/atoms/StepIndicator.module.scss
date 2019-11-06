@@ -1,34 +1,50 @@
 @import "../../style/value/colors";
 
+$indicatorDeppari: 70px;
 $indicatorHeight: 50px;
 
 .stepIndicator {
-    position: relative;
-    float:left;
-    height: $indicatorHeight; 
-    width: 100px;
-    margin-right: 2px; 
-    background-color: $mainColor; 
-    text-align: center;
-    display: block;
-    margin-left: 50px;
-}
-
-.shapes:after {
+  position: relative;
+  height: $indicatorHeight;
+  width: calc(100% - #{$indicatorDeppari + 10px});
+  margin-left: $indicatorDeppari;
+  background-color: $pastColor;
+  &.current {
+    background-color: $currentColor;
+    &:after {
+      border-left: $indicatorDeppari solid $currentColor;
+    }
+    &::before {
+      border-top: $indicatorHeight/2 solid $currentColor;
+      border-bottom: $indicatorHeight/2 solid $currentColor;
+    }
+  }
+  &:after {
     position: absolute;
-    left:100%;
+    left: 100%;
     top: 0;
     content: "";
-    border-left: $indicatorHeight/2 solid $mainColor;
-    border-top: $indicatorHeight/2 solid transparent; 
-    border-bottom: $indicatorHeight/2 solid transparent; 
-}
-.shapes:before {
+    border-left: $indicatorDeppari solid $pastColor;
+    border-top: $indicatorHeight/2 solid transparent;
+    border-bottom: $indicatorHeight/2 solid transparent;
+  }
+  &:before {
     position: absolute;
-    left: -($indicatorHeight/2);
+    left: -($indicatorDeppari);
     top: 0;
     content: "";
-    border-left: $indicatorHeight/2 solid transparent; 
-    border-top: $indicatorHeight/2 solid $mainColor;
-    border-bottom: $indicatorHeight/2 solid $mainColor;
+    border-left: $indicatorDeppari solid transparent;
+    border-top: $indicatorHeight/2 solid $pastColor;
+    border-bottom: $indicatorHeight/2 solid $pastColor;
+  }
+  .title {
+    float: left;
+    top: 0;
+    white-space: nowrap;
+  }
+  .text {
+    float: right;
+    bottom: 0;
+    white-space: nowrap;
+  }
 }
