@@ -1,0 +1,9 @@
+@import "../../style/value/colors";
+
+.cardArea {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  margin-bottom: 40px;
+  align-items: center;
+}
