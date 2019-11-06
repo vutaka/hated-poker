@@ -7,6 +7,11 @@ export default { title: "StepIndicatorArea" };
 export const withIn = () =>
   <StepIndicatorArea>
     <StepIndicator />
+  </StepIndicatorArea>
+
+export const withInMax = () =>
+  <StepIndicatorArea>
+    <StepIndicator />
     <StepIndicator isCurrent={true} />
     <StepIndicator />
     <StepIndicator />
