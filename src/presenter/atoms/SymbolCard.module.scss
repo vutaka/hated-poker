@@ -4,13 +4,21 @@
 $normalSize: 80px;
 $smallSize: 35px;
 
+.cardWrapper {
+  position: relative;
+  bottom: 0;
+  width: 10px;
+}
+
 .card {
+  float: left;
   position: relative;
   width: $normalSize;
   height: $normalSize * $silverRatio;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: all 0.5s ease;
+  transition: all 0.2s ease-out;
+
   &.small {
     width: $smallSize;
     height: $smallSize * $silverRatio;
@@ -34,6 +42,11 @@ $smallSize: 35px;
 }
 .open {
   transform: rotateY(180deg);
+  &:hover {
+    float: none;
+    z-index: 1;
+    transform: rotateY(180deg) scale(1.3, 1.3);
+  }
 }
 .rat {
   display: table;

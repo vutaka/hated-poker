@@ -4,14 +4,16 @@ import { SymbolCard } from "../src/presenter/atoms/SymbolCard";
 export default { title: "SymbolCard" };
 
 export const normal = () => <>
-  <div style={{ display: "grid", "grid-template-columns": "repeat(8, 1fr)" }}>
-    <SymbolCard isOpen={true} symbolName={"rat"} />
+  <div style={{ display: "grid", "grid-template-columns": "repeat(10, 1fr)", width: "300px" }}>
+    <SymbolCard isOpen={true} symbolName={"rat"} onClick={() => alert("rat")}/>
     <SymbolCard isOpen={true} symbolName={"dog"} />
     <SymbolCard isOpen={true} symbolName={"snake"} />
     <SymbolCard isOpen={true} symbolName={"jellyfish"} />
     <SymbolCard isOpen={true} symbolName={"bat"} />
     <SymbolCard isOpen={true} symbolName={"deer"} />
     <SymbolCard isOpen={true} symbolName={"shark"} />
+    <SymbolCard isOpen={true} symbolName={"crow"} />
+    <SymbolCard isOpen={true} symbolName={"crow"} />
     <SymbolCard isOpen={true} symbolName={"crow"} />
   </div>
   <div style={{ display: "grid", "grid-template-columns": "repeat(8, 1fr)" }}>
