@@ -51,75 +51,100 @@ $smallSize: 35px;
     transform: rotateY(180deg) scale(1.3, 1.3);
   }
 }
+// TODO 後で関数化する
 .rat {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🐭";
+  &.small{grid-column: 1;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🐭";
+    }
   }
 }
-.dog {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🐶";
+.dog{
+  &.small{grid-column: 2;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🐶";
+    }
   }
 }
-.snake {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🐍";
+.snake{
+  &.small{grid-column: 3;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🐍";
+    }
   }
 }
 .jellyfish {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "海月";
+  &.small{grid-column: 4;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "海月";
+    }
   }
 }
 .bat {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🦇";
+  &.small{grid-column: 5;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🦇";
+    }
   }
 }
 .deer {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🦌";
+  &.small{grid-column: 6;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🦌";
+    }
   }
 }
 .shark {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🦈";
+  &.small{grid-column: 7;}
+  .front {
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🦈";
+    }
   }
 }
 .crow {
-  display: table;
-  &:after {
-    text-align: center;
-    vertical-align: middle;
-    display: table-cell;
-    content: "🦅";
+  &.small{grid-column: 8;}
+  .front{
+    display: table;
+    &:after {
+      text-align: center;
+      vertical-align: middle;
+      display: table-cell;
+      content: "🦅";
+    }
   }
 }

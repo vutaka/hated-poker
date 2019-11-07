@@ -26,16 +26,15 @@ const getSymbolName = (name) => {
 }
 
 export function SymbolCard(props) {
-
   return (
-    <div className={classnames(styles.cardWrapper, { [styles.small]: props.isSmall })}>
+    <div className={classnames(styles.cardWrapper, { [styles.small]: props.isSmall }, getSymbolName(props.symbolName))}>
       <div
         className={classnames(styles.card,
           { [styles.open]: props.isOpen },
           { [styles.small]: props.isSmall }
         )}
         onClick={props.onClick}>
-        <div className={classnames(styles.front, getSymbolName(props.symbolName))} />
+        <div className={styles.front} />
         <div className={styles.back}></div>
       </div>
     </div>
