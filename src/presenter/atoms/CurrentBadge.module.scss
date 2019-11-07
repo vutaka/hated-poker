@@ -1,0 +1,21 @@
+@import "../../style/value/colors";
+
+$badgeWidth: 40px;
+
+.current {
+  position: relative;
+  background-color: $currentColor;
+  box-shadow: 3px 3px 9px $shadowColor;
+  width: $badgeWidth;
+  height: $badgeWidth;
+  cursor: pointer;
+  &:before {
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    content: "";
+    border-left: $badgeWidth/2 solid $currentColor;
+    border-right: $badgeWidth/2 solid $currentColor;
+    border-bottom: 5px solid transparent;
+  }
+}
