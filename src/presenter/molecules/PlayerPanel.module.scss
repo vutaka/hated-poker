@@ -1,0 +1,37 @@
+@import "../../style/value/colors";
+
+$pannelHeight: 300px;
+$headerHeight: 50px;
+
+.player_panel {
+  width: 100%;
+  height: $pannelHeight;
+  box-shadow: 3px 3px 6px $shadowColor;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  .name_wrapper {
+    height: $headerHeight;
+    width: 100%;
+    background-color: $mainColor;
+    display: table;
+    .player_name {
+      color: $subColor;
+      display: inline-block;
+      vertical-align: middle;
+      display: table-cell;
+    }
+    .badge {
+      position: absolute;
+      right: 10px;
+    }
+  }
+  .card_field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: calc(100% - #{$headerHeight});
+  }
+}

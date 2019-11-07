@@ -1,9 +1,15 @@
 @import "../../style/value/colors";
+@import "./SymbolCard.module.scss";
 
 .cardArea {
-  width: 100%;
+  width: calc(100% - #{$normalSize});
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  margin-bottom: 40px;
+
+  margin-right: $normalSize;
   align-items: center;
+  &.with_small {
+    width: 100%;
+    margin-right: 0;
+  }
 }

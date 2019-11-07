@@ -26,7 +26,7 @@ export const all = () => (
 )
 export const small = () => (
   <div style={{ width: "500px" }}>
-    <SymbolCardArea >
+    <SymbolCardArea isSmall={true}>
       {[...Array(21)].map((v, i) =>
         <SymbolCard isSmall={true} isOpen={true} symbolName={symbols[i % symbols.length]} key={i} />
       )}
