@@ -25,4 +25,12 @@ export class FirebaseDb {
       callback(newSnapshot.val());
     })
   }
+
+  update(obj) {
+    this.ref.update(obj);
+  }
+
+  offListen() {
+    this.ref.off();
+  }
 }

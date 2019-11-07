@@ -21,7 +21,7 @@ const getSymbolName = (name) => {
     case "crow":
       return styles.crow;
     default:
-      break;
+      return styles.rat;
   }
 }
 

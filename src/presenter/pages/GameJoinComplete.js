@@ -1,35 +1,35 @@
 
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PreparationTemplate } from "../templates/PreparationTemplate";
 import { Field } from "../atoms/Field";
-import { GameRepository } from "../../repository/GameRepository";
 import { Message } from "../atoms/Message";
 import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
-
-const reducer = (state, action) => {
-  return [...state, action];
-};
+import { MyInfoContext } from "../../context/MyInfoContextProvider";
 
 export function GameJoinComplete(props) {
   const [ownerName, setOwnerName] = useState("読み込み中...");
-  const [players, dispatch] = useReducer(reducer, new Array(0));
+  const { limitPlayersNum, othersInfo, othersInfoDispatch } = useContext(MyInfoContext);
 
   useEffect(() => {
     GameCreateUseCase.load(props.match.params.gameId).then((game) => {
       setOwnerName(game.ownerName);
     });
-    
-    GameRepository.listenPlayers(props.match.params.gameId, dispatch);
-  }, [props.match.params.gameId]);
+    GameCreateUseCase.listenPlayer(props.match.params.gameId, othersInfoDispatch);
+    GameCreateUseCase.listenStartGame(props.match.params.gameId, () => alert("次にいける"));
+    return () => { 
+      GameCreateUseCase.offListenPlayer(props.match.params.gameId);
+      GameCreateUseCase.offListenStartGame(props.match.params.gameId);
+     };
+  }, [props.match.params.gameId, othersInfoDispatch]);
 
   return (
     <PreparationTemplate title="ゲームを主催する">
-      <Message text={"全員が揃うのをお待ちください。" + players.length + "が参加中"} />
+      <Message text={"全員が揃うのをお待ちください。" + othersInfo.length + "/" + limitPlayersNum + "が待機中"} />
       <Field label="開催者">
         {ownerName}
       </Field>
       <Field label="参加者">
-        {players.map((player, index) => (
+        {othersInfo.map((player, index) => (
           <span key={index}>{player.name}<br /></span>
         ))}
       </Field>

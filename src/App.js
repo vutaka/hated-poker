@@ -4,15 +4,18 @@ import { GameCreate } from './presenter/pages/GameCreate';
 import { GameCreateComplete } from './presenter/pages/GameCreateComplete';
 import { GameJoin } from './presenter/pages/GameJoin';
 import { GameJoinComplete } from './presenter/pages/GameJoinComplete';
+import {MyInfoContextProvider} from './context/MyInfoContextProvider'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Route exact path={["/", "/create"]} component={GameCreate} />
-      <Route exact path={"/create/:gameId"} component={GameCreateComplete} />
-      <Route exact path={"/join/:gameId"} component={GameJoin} />
-      <Route exact path={"/join/:gameId/complete"} component={GameJoinComplete} />
-    </BrowserRouter>
+    <MyInfoContextProvider>
+      <BrowserRouter>
+        <Route exact path={["/", "/create"]} component={GameCreate} />
+        <Route exact path={"/create/:gameId"} component={GameCreateComplete} />
+        <Route exact path={"/join/:gameId"} component={GameJoin} />
+        <Route exact path={"/join/:gameId/complete"} component={GameJoinComplete} />
+      </BrowserRouter>
+    </MyInfoContextProvider>
   );
 }
 

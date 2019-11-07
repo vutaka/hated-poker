@@ -1,24 +1,28 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { PreparationTemplate } from "../templates/PreparationTemplate";
 import { Field } from "../atoms/Field";
 import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 import { ButtonField } from "../atoms/ButtonField";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
+import { MyInfoContext } from "../../context/MyInfoContextProvider";
 
 export function GameJoin(props) {
   const [ownerName, setOwnerName] = useState("読み込み中...");
   const [myName, setMyName] = useState("");
+  const { setLimitPlayersNum, myInfoDispatch } = useContext(MyInfoContext);
 
   useEffect(() => {
     GameCreateUseCase.load(props.match.params.gameId).then((game) => {
       setOwnerName(game.ownerName);
+      setLimitPlayersNum(game.playersNum);
     });
   }, [props.match.params.gameId]);
 
   const joinGame = () => {
     GameCreateUseCase.join(props.match.params.gameId, myName).then((myId) => {
+      myInfoDispatch({ id: myId, name: myName });
       props.history.push("/join/" + props.match.params.gameId + "/complete");
     })
   }
