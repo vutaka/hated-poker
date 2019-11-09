@@ -1,44 +1,70 @@
 import { Game } from "../domain/Game";
-import { GameRepository } from "../repository/GameRepository";
 import { Player } from "../domain/Player";
+import { FirebaseDb } from "../infrastructure/driver/FirebaseDb";
+import cardSymbol from "../domain/CardSymbol";
+import { Card } from "../domain/Card";
+import { GameStatus } from "../domain/GameStatus";
 
 export class GameCreateUseCase {
 
+  static join(gameId, name) {
+    const player = new Player(name);
+    const dbRef = new FirebaseDb("game/" + gameId + "/players");
+    return dbRef.register(player);
+  }
+
   static async create(ownerName, playersNum) {
     const game = new Game(ownerName, playersNum);
-    const gameId = await GameRepository.register(game);
+    const dbRef = new FirebaseDb("game");
+    const gameId = await dbRef.register(game);
     const myId = await this.join(gameId, ownerName);
     return [gameId, myId];
   }
 
   static load(gameId) {
-    return GameRepository.find(gameId);
-  }
-
-  static join(gameId, name) {
-    const player = new Player(name);
-    return GameRepository.addPlayer(gameId, player);
+    const dbRef = new FirebaseDb("game/" + gameId);
+    return dbRef.readAll();
   }
 
   static listenPlayer(gameId, callback) {
-    GameRepository.listenPlayers(gameId, callback);
+    const dbRef = new FirebaseDb("game/" + gameId + "/players");
+    dbRef.listenAllOnAdded(callback);
   }
 
   static offListenPlayer(gameId) {
-    GameRepository.offListenPlayers(gameId);
+    const dbRef = new FirebaseDb("game/" + gameId + "/players");
+    dbRef.offListen();
   }
 
   static async startGame(gameId) {
     const game = await this.load(gameId);
-    GameRepository.deliverCard(game);
-    GameRepository.updateGameForStart(gameId, game);
+    this.deliverCard(game);
+    const dbRef = new FirebaseDb("game/" + gameId);
+    game.status = new GameStatus();
+    dbRef.update(game);
   }
 
   static listenStartGame(gameId, callback) {
-    GameRepository.listenStartGame(gameId, callback);
+    const dbRef = new FirebaseDb("game/" + gameId + "/status");
+    dbRef.listenAllOnAdded(callback);
   }
+
   static offListenStartGame(gameId) {
-    GameRepository.offListenStartGame(gameId);
+    const dbRef = new FirebaseDb("game/" + gameId + "/status");
+    dbRef.offListen();
+  }
+
+  static deliverCard(game) {
+    const symbols = Object.entries(cardSymbol).map(([key, value]) => (key));
+    const cards = [...new Array(64).keys()].map(i => new Card(symbols[i % symbols.length]));
+    cards.sort(() => [-1, 0, 1][Math.floor(Math.random() * Math.floor(3))]);
+    while (cards.length > 0) {
+      for (const key in game.players) {
+        if (cards.length === 0) break;
+        if (!game.players[key].hand) game.players[key].hand = [];
+        game.players[key].hand.push(...cards.splice(0, 1));
+      }
+    }
   }
 
 }
