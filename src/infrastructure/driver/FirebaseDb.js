@@ -22,7 +22,18 @@ export class FirebaseDb {
 
   listenAllOnAdded(callback) {
     this.ref.on("child_added", (newSnapshot) => {
-      callback(newSnapshot.val());
+      callback([newSnapshot.key, newSnapshot.val()]);
+    })
+  }
+
+  /**
+   * データの変更を監視する。
+   * 変更された場合callbackに変更されたデータの[key, value]を渡す。
+   * @param {Function} callback 
+   */
+  listenAllOnChange(callback) {
+    this.ref.on("child_changed", (newSnapshot) => {
+      callback([newSnapshot.key, newSnapshot.val()]);
     })
   }
 

@@ -7,8 +7,8 @@ const MyInfoContext = React.createContext();
 const myInfoReducer = (state, action) => {
   return new Player(action.name, action.id);
 }
-const otherInfosReducer = (state, action) => {
-  return [...state, action];
+const otherInfosReducer = (state, [key, value]) => {
+  return [...state, value];
 }
 
 function MyInfoContextProvider(props) {

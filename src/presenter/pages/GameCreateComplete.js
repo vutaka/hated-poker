@@ -8,28 +8,28 @@ import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 
 export function GameCreateComplete(props) {
   const invitationURL = document.location.origin + "/join/" + props.match.params.gameId;
-  const {limitPlayersNum, othersInfo, othersInfoDispatch } = useContext(MyInfoContext);
+  const { limitPlayersNum, othersInfo, othersInfoDispatch } = useContext(MyInfoContext);
   useEffect(() => {
     GameCreateUseCase.listenPlayer(props.match.params.gameId, othersInfoDispatch);
     return () => {
       GameCreateUseCase.offListenPlayer(props.match.params.gameId);
     };
   }, [props.match.params.gameId, othersInfoDispatch])
-  useEffect(()=>{
-    if(limitPlayersNum <= othersInfo.length) {
+  useEffect(() => {
+    if (limitPlayersNum <= othersInfo.length) {
       GameCreateUseCase.startGame(props.match.params.gameId);
     }
   }, [limitPlayersNum, othersInfo])
-  
+
   return (
     <PreparationTemplate title="ゲームを主催する">
       <Field label="招待URL">
         <TextCopy
-          value={invitationURL}/>
+          value={invitationURL} />
       </Field>
       <Field label="招待QRコード">
         <QRCode
-          encodedURL={invitationURL}/>
+          encodedURL={invitationURL} />
       </Field>
       <Field label="参加者">
         {othersInfo.map((player, index) => (
