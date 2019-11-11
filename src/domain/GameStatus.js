@@ -1,13 +1,14 @@
 export class GameStatus {
-  constructor(currentPlayer = "", currentCard = "", order = [],loser = "") {
+  constructor(currentPlayer = "", currentCard = "", order = [], loser = "", isGoThrough = false) {
     this.currentPlayer = currentPlayer;
     this.currentCard = currentCard;
     this.order = order;
     this.loser = loser;
+    this.isGoThrough = isGoThrough;
   }
 
-  static create({currentCard, order, currentPlayer, loser}) {
-    return new GameStatus(currentPlayer, currentCard, order,loser);
+  static create({ currentCard, order, currentPlayer, loser, isGoThrough }) {
+    return new GameStatus(currentPlayer, currentCard, order, loser, isGoThrough);
   }
 
   setCurrentCard(card) {
@@ -17,5 +18,7 @@ export class GameStatus {
   isFirst() {
     return this.order.length === 0;
   }
-
+  isGoThrough() {
+    return this.isGoThrough;
+  }
 }

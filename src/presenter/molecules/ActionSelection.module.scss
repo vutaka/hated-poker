@@ -1,0 +1,33 @@
+@import "../../style/value/colors";
+
+.action_selection {
+
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  padding: 40px 0;
+  background-color: $subColor;
+}
+.modal_container {
+  display: flex;
+  flex-direction: column;
+}
+.card_slot {
+  display: flex;
+  justify-content: center;
+}
+
+.content_slot{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.button_slot{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}

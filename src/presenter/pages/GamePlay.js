@@ -1,44 +1,37 @@
-import React, { useContext, useReducer, useMemo, useEffect, useCallback } from "react"
-import classnames from "classnames";
-import { CurrentBadge } from "../atoms/CurrentBadge";
+import React, { useContext, useState, useMemo, useEffect, useCallback } from "react"
 import { PlayerBox } from "../molecules/PlayerBox";
 import { PlayingPanel } from "../molecules/PlayingPanel";
 import { MyInfoContext } from "../../context/MyInfoContextProvider";
 import { SymbolCardArea } from "../atoms/SymbolCardArea";
 import { SymbolCard } from "../atoms/SymbolCard"
-import { Player } from "../../domain/Player";
 import { Header } from "../molecules/Header"
 import { GamePlayUseCase } from "../../useCase/GamePlayUseCase";
-import { GameStatus } from "../../domain/GameStatus";
-
-const gameStatusReducer = (state, action) => {
-  const [id, gameStatus] = action;
-  console.log(gameStatus);
-  return GameStatus.create(gameStatus);
-}
-const playersReducer = (state, action) => {
-  const [id, player] = action;
-  console.log(action);
-  return (new Map(state)).set(id, Player.create(id, player));
-}
+import { GameInfoContext } from "../../context/GameInfoContextProvider";
+import { CardPassSelectDialog } from "../templates/CardPassSelectDialog";
+import { CardInferDialog } from "../templates/CardInferDialog";
+import { StepIndicatorArea } from "../atoms/StepIndicatorArea";
+import { StepIndicator } from "../atoms/StepIndicator";
+import cardSymbol from "../../domain/CardSymbol";
 
 export function GamePlay(props) {
   const { limitPlayersNum, myInfo } = useContext(MyInfoContext);
-  const [gameStatus, gameStatusDispatch] = useReducer(gameStatusReducer, new GameStatus());
-  const [players, playersDispatch] = useReducer(playersReducer, new Map());
+  const { gameStatus, gameStatusDispatch, players, playersDispatch } = useContext(GameInfoContext);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   useEffect(() => {
     GamePlayUseCase.listenGamePlay(props.match.params.gameId, playersDispatch, gameStatusDispatch)
     return () => {
       GamePlayUseCase.offListenGamePlay(props.match.params.gameId);
     };
-  }, [props.match.params.gameId])
+  }, [props.match.params.gameId, playersDispatch, gameStatusDispatch])
+
 
   const selectCard = useCallback(
-    (player, cardIndex) => {
-      return gameStatus.currentPlayer === myInfo.id
-        ? () => (GamePlayUseCase.selectCard(props.match.params.gameId, player, cardIndex, gameStatus))
-        : () => { return; };
-    }, [gameStatus, myInfo, props]);
+    (player, cardIndex) => () => {
+      GamePlayUseCase.selectCard(cardIndex, player, gameStatus, playersDispatch, gameStatusDispatch);
+      setIsDialogOpen(true);
+    }
+    , [gameStatus, playersDispatch, gameStatusDispatch]);
 
   const playersPanel = useMemo(() => {
     const playerPanels = [];
@@ -46,33 +39,90 @@ export function GamePlay(props) {
       playerPanels.push(
         <PlayerBox playerName={player.name}>
           <SymbolCardArea >
-            {player.field.map((card) =>
-              <SymbolCard isSmall={true} isOpen={true} symbolName={card.cardSymbol} key={card.cardSymbol} />
+            {player.field.map((card, i) =>
+              <SymbolCard
+                isSmall={true}
+                isOpen={true}
+                symbolName={card.cardSymbol}
+                key={gameStatus.currentPlayer + "field" + card.cardSymbol + i} />
             )}
           </SymbolCardArea>
           <SymbolCardArea cardListSize={player.hand.length}>
-            {player.hand.map((card, i) =>
-              <SymbolCard
-                isOpen={player.id === myInfo.id}
-                symbolName={card.cardSymbol}
-                key={i}
-                onClick={selectCard(player, i)} />
+            {player.hand.map((card, i) => (
+              (gameStatus.currentPlayer === myInfo.id && gameStatus.isFirst()) ?
+                (<SymbolCard
+                  isOpen={player.id === myInfo.id}
+                  symbolName={card.cardSymbol}
+                  key={gameStatus.currentPlayer + "hand" + card.cardSymbol + i}
+                  onClick={selectCard(player, i)} />)
+                : (<SymbolCard
+                  isOpen={player.id === myInfo.id}
+                  symbolName={card.cardSymbol}
+                  key={gameStatus.currentPlayer + "hand" + card.cardSymbol + i} />)
+            )
             )}
           </SymbolCardArea>
         </PlayerBox>
       )
     });
-    console.log(players)
-    console.log(playerPanels)
     return playerPanels;
-  }, [players, myInfo, selectCard]);
+  }, [players, myInfo, selectCard, gameStatus]);
+
+  const gameIndicator = useMemo(() => {
+    if (!gameStatus.order.filter(element => players.get(element.playerId)) || !players.get(gameStatus.currentPlayer)) return (<></>);
+    return (
+      <>
+        {console.log(players)}
+        {
+          gameStatus.order.map(element =>
+            (
+              <StepIndicator
+                title={players.get(element.playerId).name + "の番"}
+                text={"これは「" + cardSymbol[element.cardSymbol] + "」です。"} />
+            )
+          )}
+        <StepIndicator
+          title={(myInfo.id === gameStatus.currentPlayer ? "あなた" : players.get(gameStatus.currentPlayer).name) + "の番"}
+          text="考え中🤔"
+          isCurrent={true} />
+      </>
+    )
+  }, [players, gameStatus, myInfo])
 
   return (
     <>
       <Header title="ゲーム中" />
-      <PlayingPanel playersNum={limitPlayersNum}>
-        {playersPanel}
-      </PlayingPanel>
+      <StepIndicatorArea>
+        {gameIndicator}
+      </StepIndicatorArea>
+      {
+        (Boolean(players.get(gameStatus.currentPlayer))) &&
+        <PlayingPanel
+          onAction={() => { if (Boolean(gameStatus.currentCard.cardSymbol)) { return setIsDialogOpen(true) } }}
+          showMessage={myInfo.id === gameStatus.currentPlayer}
+          text="あなたの番です"
+          playersNum={limitPlayersNum}>
+          {playersPanel}
+        </PlayingPanel>
+      }
+      {
+        myInfo.id === gameStatus.currentPlayer &&
+        (
+          (gameStatus.isFirst() || gameStatus.isGoThrough) ?
+            (<CardPassSelectDialog
+              isOpen={isDialogOpen}
+
+              gameId={props.match.params.gameId}
+              close={() => (setIsDialogOpen(false))} />)
+            : (
+              <CardInferDialog
+                isOpen={isDialogOpen}
+
+                gameId={props.match.params.gameId}
+                close={() => (setIsDialogOpen(false))} />
+            ))
+      }
+
     </>
   )
 }

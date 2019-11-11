@@ -1,4 +1,6 @@
 @import "../../style/value/colors";
+@import "../../style/value/grid";
+@import "../atoms/Button.module.scss";
 
 .playing_panel {
   display: grid;
@@ -16,4 +18,36 @@
 
 .player_columns_3 {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.row {
+  width: 100%;
+  height: 3em;
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat($gridColumnNum * 2 + 1, 1fr);
+  margin-bottom: 40px;
+  align-items: center;
+
+  .box {
+    grid-column-start: 1;
+    grid-column-end: $gridColumnNum * 2 - 2;
+    text-align: center;
+  }
+
+}
+.border {
+  display: grid;
+  grid-column: 2/-2;
+  border: 1px solid $main2Color;
+  position: relative;
+  height: 33px;
+}
+.button {
+  position: absolute;
+  top: -$buttonDeppari;
+  right: 0;
+  height: 33px;
+  width: auto;
+  grid-column-start: 19;
 }

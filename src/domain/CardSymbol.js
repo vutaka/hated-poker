@@ -1,12 +1,12 @@
 const cardSymbol = {
-  rat: "rat",
-  dog: "dog",
-  snake: "snake",
-  jellyfish: "jellyfish",
-  bat: "bat",
-  deer: "deer",
-  shark: "shark",
-  crow: "crow"
+  rat: "ネズミ",
+  dog: "犬っころ",
+  snake: "マムシ",
+  jellyfish: "クラゲ",
+  bat: "コウモリ",
+  deer: "シカ",
+  shark: "サメ",
+  crow: "カラス"
 }
 
 export default cardSymbol;

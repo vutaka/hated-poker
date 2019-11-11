@@ -4,8 +4,8 @@ import classnames from "classnames";
 
 export function ContentPanel(props) {
   return(
-    <article className={classnames(styles.content, props.additionalClassName)}>
+    <div className={classnames(styles.content, props.additionalClassName)}>
       {props.children}
-    </article>
+    </div>
   )
 }

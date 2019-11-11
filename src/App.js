@@ -6,6 +6,7 @@ import { GameJoin } from './presenter/pages/GameJoin';
 import { GameJoinComplete } from './presenter/pages/GameJoinComplete';
 import {MyInfoContextProvider} from './context/MyInfoContextProvider'
 import { GamePlay } from './presenter/pages/GamePlay';
+import { GameInfoContextProvider } from './context/GameInfoContextProvider';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <Route exact path={"/create/:gameId"} component={GameCreateComplete} />
         <Route exact path={"/join/:gameId"} component={GameJoin} />
         <Route exact path={"/join/:gameId/complete"} component={GameJoinComplete} />
-        <Route exact path={"/play/:gameId"} component={GamePlay} />
+        <GameInfoContextProvider>
+          <Route exact path={"/play/:gameId"} component={GamePlay} />
+        </GameInfoContextProvider>
       </BrowserRouter>
     </MyInfoContextProvider>
   );
