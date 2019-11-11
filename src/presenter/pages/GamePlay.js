@@ -32,15 +32,13 @@ export function GamePlay(props) {
       GamePlayUseCase.offListenGamePlay(props.match.params.gameId);
     };
   }, [props.match.params.gameId])
+
   const selectCard = useCallback(
-    (player, cardIndex) => () => {
-      return gameStatus.currentPlayer === myInfo.id ? (
-        GamePlayUseCase.selectCard(props.match.params.gameId, player, cardIndex, gameStatus)
-      )
-        : false;
-    },
-    [gameStatus, myInfo, props],
-  )
+    (player, cardIndex) => {
+      return gameStatus.currentPlayer === myInfo.id
+        ? () => (GamePlayUseCase.selectCard(props.match.params.gameId, player, cardIndex, gameStatus))
+        : () => { return; };
+    }, [gameStatus, myInfo, props]);
 
   const playersPanel = useMemo(() => {
     const playerPanels = [];
