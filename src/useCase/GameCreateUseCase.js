@@ -36,21 +36,22 @@ export class GameCreateUseCase {
     dbRef.offListen();
   }
 
-  static async startGame(gameId) {
+  static async startGame(gameId, firstPlayerId, callback) {
     const game = await this.load(gameId);
     this.deliverCard(game);
     const dbRef = new FirebaseDb("game/" + gameId);
-    game.status = new GameStatus();
-    dbRef.update(game);
+    const gameStatus = new GameStatus(firstPlayerId);
+    game.gameStatus = gameStatus;
+    return await dbRef.update(game);
   }
 
   static listenStartGame(gameId, callback) {
-    const dbRef = new FirebaseDb("game/" + gameId + "/status");
+    const dbRef = new FirebaseDb("game/" + gameId + "/gameStatus");
     dbRef.listenAllOnAdded(callback);
   }
 
   static offListenStartGame(gameId) {
-    const dbRef = new FirebaseDb("game/" + gameId + "/status");
+    const dbRef = new FirebaseDb("game/" + gameId + "/gameStatus");
     dbRef.offListen();
   }
 
@@ -61,6 +62,7 @@ export class GameCreateUseCase {
     while (cards.length > 0) {
       for (const key in game.players) {
         if (cards.length === 0) break;
+        // TODO 2回目にプレイするときは手札があるため手札がからの状態になるようにする
         if (!game.players[key].hand) game.players[key].hand = [];
         game.players[key].hand.push(...cards.splice(0, 1));
       }

@@ -8,18 +8,22 @@ import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 
 export function GameCreateComplete(props) {
   const invitationURL = document.location.origin + "/join/" + props.match.params.gameId;
-  const { limitPlayersNum, othersInfo, othersInfoDispatch } = useContext(MyInfoContext);
+  const { myInfo, limitPlayersNum, othersInfo, othersInfoDispatch } = useContext(MyInfoContext);
+
   useEffect(() => {
     GameCreateUseCase.listenPlayer(props.match.params.gameId, othersInfoDispatch);
     return () => {
       GameCreateUseCase.offListenPlayer(props.match.params.gameId);
     };
   }, [props.match.params.gameId, othersInfoDispatch])
+
   useEffect(() => {
     if (limitPlayersNum <= othersInfo.length) {
-      GameCreateUseCase.startGame(props.match.params.gameId);
+      GameCreateUseCase.startGame(props.match.params.gameId, myInfo.id).then(() =>
+        props.history.push("/play/" + props.match.params.gameId)
+      );
     }
-  }, [limitPlayersNum, othersInfo])
+  }, [limitPlayersNum, othersInfo, props, myInfo])
 
   return (
     <PreparationTemplate title="ゲームを主催する">

@@ -1,8 +1,12 @@
 export class Player {
-  constructor(name = "", id = null) {
+  constructor(name = "", id = "", hand = [], field = []) {
     this.name = name;
     this.id = id;
-    this.hand = null;
+    this.hand = hand;
+    this.field = field;
+  }
+  static create(id, {name, hand, field}) {
+    return new Player(name, id, hand, field);
   }
   getName() {
     return this.name;
@@ -12,5 +16,8 @@ export class Player {
   }
   setHand(hand){
     this.hand = hand;
+  }
+  setField(field){
+    this.field = field;
   }
 }

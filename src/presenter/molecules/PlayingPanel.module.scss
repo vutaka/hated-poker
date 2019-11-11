@@ -1,0 +1,19 @@
+@import "../../style/value/colors";
+
+.playing_panel {
+  display: grid;
+  grid-auto-rows: 300px;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+.player_columns_1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.player_columns_2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.player_columns_3 {
+  grid-template-columns: repeat(3, 1fr);
+}

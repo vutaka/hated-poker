@@ -5,7 +5,6 @@ import { Field } from "../atoms/Field";
 import { Message } from "../atoms/Message";
 import { GameCreateUseCase } from "../../useCase/GameCreateUseCase";
 import { MyInfoContext } from "../../context/MyInfoContextProvider";
-import { FirebaseDb } from "../../infrastructure/driver/FirebaseDb";
 
 export function GameJoinComplete(props) {
   const [ownerName, setOwnerName] = useState("読み込み中...");
@@ -16,14 +15,15 @@ export function GameJoinComplete(props) {
       setOwnerName(game.ownerName);
     });
     GameCreateUseCase.listenPlayer(props.match.params.gameId, othersInfoDispatch);
-    GameCreateUseCase.listenStartGame(props.match.params.gameId, () => alert("次にいける"));
-    const firebase = new FirebaseDb("/game/" + props.match.params.gameId + "/players");
-    firebase.listenAllOnChange(([key,value])=>console.log(key, value));
-    return () => { 
+    GameCreateUseCase.listenStartGame(props.match.params.gameId, () => {
+      props.history.push("/play/" + props.match.params.gameId);
+    });
+
+    return () => {
       GameCreateUseCase.offListenPlayer(props.match.params.gameId);
       GameCreateUseCase.offListenStartGame(props.match.params.gameId);
-     };
-  }, [props.match.params.gameId, othersInfoDispatch]);
+    };
+  }, [props, othersInfoDispatch]);
 
   return (
     <PreparationTemplate title="ゲームを主催する">

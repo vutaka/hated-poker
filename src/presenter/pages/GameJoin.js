@@ -18,7 +18,7 @@ export function GameJoin(props) {
       setOwnerName(game.ownerName);
       setLimitPlayersNum(game.playersNum);
     });
-  }, [props.match.params.gameId]);
+  }, [props, setOwnerName, setLimitPlayersNum]);
 
   const joinGame = () => {
     GameCreateUseCase.join(props.match.params.gameId, myName).then((myId) => {

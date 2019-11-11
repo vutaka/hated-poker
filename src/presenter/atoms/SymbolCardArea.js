@@ -7,7 +7,7 @@ export function SymbolCardArea(props) {
   return (
     <div
       className={classnames(styles.cardArea, { [styles.with_small]: props.isSmall })}
-      style={{ "grid-template-columns": "repeat(" + (props.cardListSize ? props.cardListSize : 8) + ", 1fr)" }}>
+      style={{ gridTemplateColumns: "repeat(" + (props.cardListSize ? props.cardListSize : 8) + ", 1fr)" }}>
       {props.children}
     </div>
   )
