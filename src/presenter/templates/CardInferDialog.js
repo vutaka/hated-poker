@@ -4,6 +4,7 @@ import { SymbolCard } from "../atoms/SymbolCard";
 import { Button } from "../atoms/Button";
 import { GameInfoContext } from "../../context/GameInfoContextProvider";
 import cardSymbol from "../../domain/CardSymbol";
+import { GamePlayUseCase } from "../../useCase/GamePlayUseCase";
 
 export function CardInferDialog(props) {
   const [isCardOpen, setIsCardOpen] = useState(false);
@@ -13,6 +14,18 @@ export function CardInferDialog(props) {
     alert(cardSymbol[gameStatus.currentCard.cardSymbol] + "でした。");
     gameStatus.isGoThrough = true;
     gameStatusDispatch([null, gameStatus]);
+    props.close();
+  }
+  const believe = () => {
+    setIsCardOpen(true);
+    alert(cardSymbol[gameStatus.currentCard.cardSymbol] + "でした。");
+    GamePlayUseCase.believe(props.gameId, gameStatus);
+    props.close();
+  }
+  const doubt = () => {
+    setIsCardOpen(true);
+    alert(cardSymbol[gameStatus.currentCard.cardSymbol] + "でした。");
+    GamePlayUseCase.doubt(props.gameId, gameStatus);
     props.close();
   }
   return (
@@ -29,9 +42,9 @@ export function CardInferDialog(props) {
       }
       buttonSlot={
         <>
-          <Button>その通り</Button>
-          <Button>嘘乙</Button>
-          <Button onClick={goThrough}>パスする</Button>
+          <Button onClick={believe}>その通り</Button>
+          <Button onClick={doubt}>嘘乙</Button>
+          {gameStatus.order.length < players.size - 1 && <Button onClick={goThrough}>パスする</Button>}
           <Button onClick={props.close}>考える</Button>
         </>
       }

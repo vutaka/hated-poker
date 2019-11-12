@@ -111,13 +111,11 @@ export function GamePlay(props) {
           (gameStatus.isFirst() || gameStatus.isGoThrough) ?
             (<CardPassSelectDialog
               isOpen={isDialogOpen}
-
               gameId={props.match.params.gameId}
               close={() => (setIsDialogOpen(false))} />)
             : (
               <CardInferDialog
                 isOpen={isDialogOpen}
-
                 gameId={props.match.params.gameId}
                 close={() => (setIsDialogOpen(false))} />
             ))

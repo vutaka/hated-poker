@@ -1,3 +1,5 @@
+import cardSymbol from "./CardSymbol";
+
 export class Player {
   constructor(name = "", id = "", hand = [], field = []) {
     this.name = name;
@@ -19,5 +21,14 @@ export class Player {
   }
   setField(field){
     this.field = field;
+  }
+  isDefeat() {
+    const cardSymbolNames = this.field.map(card => card.cardSymbol);
+    for (const key in cardSymbol) {
+      let count = 0;
+      cardSymbolNames.filter(element => (element === key)).forEach(() => count++);
+      if(count >= 4) return true;
+    }
+    return false;
   }
 }
