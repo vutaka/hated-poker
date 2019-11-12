@@ -39,6 +39,7 @@ $smallSize: 35px;
 // デフォルトでは表が隠れた状態
 .front {
   background-color: $cardColor;
+  border: 1px solid $shadowColor;
   transform: rotateY(180deg);
 }
 .back {
