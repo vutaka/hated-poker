@@ -5,6 +5,7 @@
   width: calc(100% - #{$normalSize});
   display: grid;
   grid-template-columns: repeat(1, 1fr);
+  grid-auto-flow: column;
 
   margin-right: $normalSize;
   align-items: center;

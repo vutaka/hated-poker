@@ -15,9 +15,20 @@ export const withCard = () => (
   <div style={{ display: "grid", "grid-template-columns": "repeat(3, 1fr)" }}>
     <PlayerBox playerName={"武田さん"} isCurrent={true}>
       <SymbolCardArea isSmall={true}>
-        {[...Array(21)].map((v, i) =>
-          <SymbolCard isSmall={true} isOpen={true} symbolName={symbols[i % symbols.length]} key={i} />
-        )}
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"bat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"rat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"dog"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"snake"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"jellyfish"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"bat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"deer"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"shark"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"crow"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"bat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"bat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"rat"} />
+        <SymbolCard isSmall={true} isOpen={true} symbolName={"rat"} />
+
       </SymbolCardArea>
       <SymbolCardArea cardListSize={21}>
         {[...Array(21)].map((v, i) =>
