@@ -24,11 +24,15 @@ function GameInfoContextProvider(props) {
   const [gameStatus, gameStatusDispatch] = useReducer(gameStatusReducer, new GameStatus());
   const [players, playersDispatch] = useReducer(playersReducer, new Map());
   const [gameReady, setGameReady] = useState(false);
+  const [isOver, setIsOver] = useState(false);
   const { limitPlayersNum } = useContext(MyInfoContext);
   useEffect(() => {
     if (players.size === limitPlayersNum && Boolean(gameStatus.currentPlayer)) setGameReady(true);
   }, [gameStatus, players, limitPlayersNum])
-  const value = { gameStatus, gameStatusDispatch, players, playersDispatch, gameReady};
+  useEffect(() => {
+    if(Boolean(gameStatus.loser)) setIsOver(true);
+  }, [gameStatus.loser])
+  const value = { gameStatus, gameStatusDispatch, players, playersDispatch, gameReady, isOver};
 
   return (
     // コンテキストプロバイダーとしてuseReducerのstateとdispatchをコンテキストに設定

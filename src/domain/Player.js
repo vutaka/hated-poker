@@ -7,7 +7,7 @@ export class Player {
     this.hand = hand;
     this.field = field;
   }
-  static create(id, {name, hand, field}) {
+  static create(id, { name, hand, field }) {
     return new Player(name, id, hand, field);
   }
   getName() {
@@ -16,10 +16,10 @@ export class Player {
   getId() {
     return this.id;
   }
-  setHand(hand){
+  setHand(hand) {
     this.hand = hand;
   }
-  setField(field){
+  setField(field) {
     this.field = field;
   }
   isDefeat() {
@@ -27,8 +27,10 @@ export class Player {
     for (const key in cardSymbol) {
       let count = 0;
       cardSymbolNames.filter(element => (element === key)).forEach(() => count++);
-      if(count >= 4) return true;
+      if (count >= 4) return true;
     }
+    const symbolHasNum = cardSymbolNames.filter((cardSymbolName, i) => cardSymbolNames.indexOf(cardSymbolName) === i).length;
+    if (symbolHasNum === 8) return true;
     return false;
   }
 }

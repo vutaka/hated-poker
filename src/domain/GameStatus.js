@@ -1,5 +1,5 @@
 export class GameStatus {
-  constructor(currentPlayer = "", currentCard = "", order = [], loser = "", isGoThrough = false) {
+  constructor(currentPlayer = "", currentCard = "", order = [], loser = null, isGoThrough = false) {
     this.currentPlayer = currentPlayer;
     this.currentCard = currentCard;
     this.order = order;

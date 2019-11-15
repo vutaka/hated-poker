@@ -55,15 +55,28 @@ export class GameCreateUseCase {
     dbRef.offListen();
   }
 
+  static listenReStartGame(gameId, callback) {
+    const dbRef = new FirebaseDb("game/" + gameId + "/gameStatus/loser");
+    dbRef.listenAllOnDelete(callback);
+  }
+
+  static offListenReStartGame(gameId) {
+    const dbRef = new FirebaseDb("game/" + gameId + "/gameStatus/loser");
+    dbRef.offListen();
+  }
+
   static deliverCard(game) {
+    // ゲームが2回目の時手札と場がすでにあるため初期化する。
+    Object.entries(game.players).forEach(([key, player]) => {
+      player.field = [];
+      player.hand = [];
+    });
     const symbols = Object.entries(cardSymbol).map(([key, value]) => (key));
     const cards = [...new Array(64).keys()].map(i => new Card(symbols[i % symbols.length]));
     cards.sort(() => [-1, 0, 1][Math.floor(Math.random() * Math.floor(3))]);
     while (cards.length > 0) {
       for (const key in game.players) {
         if (cards.length === 0) break;
-        // TODO 2回目にプレイするときは手札があるため手札がからの状態になるようにする
-        if (!game.players[key].hand) game.players[key].hand = [];
         game.players[key].hand.push(...cards.splice(0, 1));
       }
     }

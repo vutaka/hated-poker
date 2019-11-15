@@ -53,10 +53,15 @@ export class GamePlayUseCase {
 
     player.field.push(gameStatus.currentCard);
     const newStatus = new GameStatus(failurePlayerId);
-    if (player.isDefeat()) newStatus.loser = failurePlayerId;
+    if (player.isDefeat()) newStatus.loser = {id: player.id, name: player.name};
 
     const statusRef = new FirebaseDb("/game/" + gameId + "/gameStatus");
     playerRef.update(player);
     statusRef.update(newStatus);
+  }
+
+  static async getLoser(gameId) {
+    const loserRef = new FirebaseDb("/game/" + gameId + "/gameStatus/loser");
+    return loserRef.readAll();
   }
 }

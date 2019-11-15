@@ -49,8 +49,22 @@ export class FirebaseDb {
     })
   }
 
+  /**
+ * データの変更を監視する。
+ * 変更された場合callbackに変更されたデータの[key, value]を渡す。
+ * @param {Function} callback 
+ */
+  listenAllOnDelete(callback) {
+    this.ref.on("child_removed", (newSnapshot) => {
+      callback([newSnapshot.key, newSnapshot.val()]);
+    })
+  }
+
   async update(obj) {
     return await this.ref.update(obj);
+  }
+  async set(obj) {
+    return await this.ref.set(obj);
   }
 
   offListen() {
