@@ -24,7 +24,7 @@
 
 以下のファイルをコミットしていません。
 動かしたい場合自分でfirebaseの諸々の設定とかを行う必要があります。
-`/Users/vutaka/Work/develop/frontend/hated-poker/src/infrastructure/config/firebase.js`
+`src/infrastructure/config/firebase.js`
 
 上記ファイルの中身はこんな感じになります。
 
