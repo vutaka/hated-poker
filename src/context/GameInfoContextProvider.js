@@ -32,7 +32,13 @@ function GameInfoContextProvider(props) {
   useEffect(() => {
     if(Boolean(gameStatus.loser)) setIsOver(true);
   }, [gameStatus.loser])
-  const value = { gameStatus, gameStatusDispatch, players, playersDispatch, gameReady, isOver};
+  
+  const initContextValue = () => {
+    setIsOver(false);
+    setGameReady(false);
+  }
+  
+  const value = { gameStatus, gameStatusDispatch, players, playersDispatch, gameReady, isOver, initContextValue};
 
   return (
     // コンテキストプロバイダーとしてuseReducerのstateとdispatchをコンテキストに設定

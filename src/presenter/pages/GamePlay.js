@@ -15,7 +15,7 @@ import cardSymbol from "../../domain/CardSymbol";
 
 export function GamePlay(props) {
   const { limitPlayersNum, myInfo } = useContext(MyInfoContext);
-  const { gameStatus, gameStatusDispatch, players, playersDispatch, isOver } = useContext(GameInfoContext);
+  const { gameStatus, gameStatusDispatch, players, playersDispatch, isOver , initContextValue} = useContext(GameInfoContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -24,8 +24,10 @@ export function GamePlay(props) {
       GamePlayUseCase.offListenGamePlay(props.match.params.gameId);
     };
   }, [props.match.params.gameId, playersDispatch, gameStatusDispatch])
+  
   useEffect(() => {
-    if (isOver) props.history.push("/play/" + props.match.params.gameId + "/complete")
+    if (isOver) props.history.push("/play/" + props.match.params.gameId + "/complete");
+    return initContextValue();
   }, [isOver, props])
 
 
