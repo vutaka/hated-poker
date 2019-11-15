@@ -9,7 +9,8 @@ export function ActionSelection(props) {
       isOpen={props.isOpen}
       onAfterOpen={props.afterOpenModal}
       onRequestClose={props.onRequestClose}
-      className={style.action_selection}>
+      className={style.action_selection}
+      appElement={document.getElementById('root')}>
       <div className={style.modal_container}>
         <div className={style.card_slot}>
           {props.cardSlot}

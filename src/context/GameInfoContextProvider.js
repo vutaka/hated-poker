@@ -1,7 +1,6 @@
 // コンテキストプロバイダーコンポーネント
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { Player } from "../domain/Player";
-import { Game } from "../domain/Game"
 import { GameStatus } from "../domain/GameStatus";
 import { MyInfoContext } from "./MyInfoContextProvider";
 
@@ -10,12 +9,10 @@ const GameInfoContext = React.createContext();
 
 const gameStatusReducer = (state, action) => {
   const [id, gameStatus] = action;
-  console.log(action);
   return GameStatus.create(gameStatus);
 }
 const playersReducer = (state, action) => {
   const [id, player] = action;
-  console.log(action);
   return (new Map(state)).set(id, Player.create(id, player));
 }
 

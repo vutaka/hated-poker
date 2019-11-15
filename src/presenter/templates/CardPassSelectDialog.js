@@ -15,7 +15,7 @@ export function CardPassSelectDialog(props) {
     const playersList = [];
     const orderdId = gameStatus.order.map(player => player.playerId);
     for (const [key, player] of players) {
-      if (gameStatus.currentPlayer !== key && orderdId.indexOf(key) < 0 ) {
+      if (gameStatus.currentPlayer !== key && orderdId.indexOf(key) < 0) {
         playersList.push({ value: player.id, text: player.name });
       }
     }
@@ -23,8 +23,7 @@ export function CardPassSelectDialog(props) {
   }, [gameStatus, players]);
   const [selectedPlayer, setSelectedPlayer] = useState(playersListForSelect.length > 0 ? playersListForSelect[0].value : null);
   const [selectedSymbol, setSelectedSymbol] = useState("rat");
-  console.log(gameStatus);
-  console.log(players);
+
   return (
     <ActionSelection
       isOpen={props.isOpen}

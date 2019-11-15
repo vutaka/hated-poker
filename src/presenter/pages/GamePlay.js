@@ -77,7 +77,6 @@ export function GamePlay(props) {
     if (!gameStatus.order.filter(element => players.get(element.playerId)) || !players.get(gameStatus.currentPlayer)) return (<></>);
     return (
       <>
-        {console.log(players)}
         {
           gameStatus.order.map(element =>
             (
