@@ -1,4 +1,4 @@
-import { firebaseApp } from "../config/firebase"
+import { firebaseApp } from "../config/firebase";
 
 export class FirebaseDb {
   constructor(refName) {
