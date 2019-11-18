@@ -47,7 +47,7 @@ export const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 ## やりたかったこと（バックログ）
 
-[やりたかったことはこちら（仕様とか技術要素）](./src/docs/やりたかったこと.md)
+[やりたかったことできてないことはこちら](./docs/やりたかったこと.md)
 
 ---
 
