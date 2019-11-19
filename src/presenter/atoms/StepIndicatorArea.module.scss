@@ -1,14 +1,29 @@
 @import "../../style/value/colors";
+@import "../../style/responsive.scss";
+@import "./StepIndicator.module.scss";
 
-$indicatorDeppari: 70px;
-$indicatorHeight: 50px;
 
 .area {
   max-width: 1000px;
-  margin: 10px auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row: 2;
+
   row-gap: 20px;
   align-items: center;
+  @include mQuery(sp) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-row: 5;
+    margin: 10px;
+    margin-right: $indicatorDeppari - $indicatorGap;
+  }
+  @include mQuery(tab) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row: 3;
+    margin: 10px;
+    margin-right: $indicatorDeppari - $indicatorGap;
+  }
+  @include mQuery(pc) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-row: 2;
+    margin: 10px auto;
+  }
 }

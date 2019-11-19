@@ -2,13 +2,15 @@
 
 $indicatorDeppari: 60px;
 $indicatorHeight: 50px;
+$indicatorGap: 20px;
 
 .stepIndicator {
   position: relative;
   height: $indicatorHeight;
-  width: calc(100% - #{$indicatorDeppari + 20px});
+  width: calc(100% - #{$indicatorDeppari + $indicatorGap});
   margin-left: $indicatorDeppari;
   background-color: $pastColor;
+
   &.current {
     background-color: $currentColor;
     &:after {

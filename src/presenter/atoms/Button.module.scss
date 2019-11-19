@@ -22,6 +22,8 @@ $buttonDeppari: 4px;
   }
   @include mQuery(tab) {
     width: 100px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   &:active {
