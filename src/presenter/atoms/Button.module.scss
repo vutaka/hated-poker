@@ -14,12 +14,14 @@ $buttonDeppari: 4px;
   cursor: pointer;
 
   height: 50px;
-  width: 100px;
 
   @include mQuery(sp) {
     width: 100%;
     margin-left: 10px;
     margin-right: 10px;
+  }
+  @include mQuery(tab) {
+    width: 100px;
   }
 
   &:active {
