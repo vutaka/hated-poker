@@ -1,0 +1,11 @@
+$breakPoints: (
+  'sp': 'screen and (min-width: 320px)',
+  'tab': 'screen and (min-width: 768px)',
+  'pc': 'screen and (min-width: 1000px)',
+) !default;
+
+@mixin mQuery($breakPoint: pc) {
+  @media #{map-get($breakPoints, $breakPoint)} {
+    @content;
+  }
+}

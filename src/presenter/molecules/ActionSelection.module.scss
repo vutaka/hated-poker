@@ -1,4 +1,6 @@
 @import "../../style/value/colors";
+@import "../../style/responsive.scss";
+@import "../atoms/SymbolCard.module.scss";
 
 .action_selection {
 
@@ -17,6 +19,7 @@
 .card_slot {
   display: flex;
   justify-content: center;
+  padding-right: $normalSize;
 }
 
 .content_slot{
@@ -28,6 +31,20 @@
 
 .button_slot{
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+
+  @include mQuery(sp) {
+    flex-direction: column;
+    align-items: center;
+    & > button {
+      margin-bottom: 15px;
+    }
+  }
+  @include mQuery(tab) {
+    justify-content: space-around;
+    flex-direction: row;
+  }
+  @include mQuery(pc) {
+    justify-content: space-around;
+    flex-direction: row;
+  }
 }

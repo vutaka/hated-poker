@@ -1,5 +1,6 @@
 @import "../../style/value/colors";
 @import "../../style/value/grid";
+@import "../../style/responsive.scss";
 @import "../atoms/Button.module.scss";
 
 .playing_panel {
@@ -13,11 +14,24 @@
 }
 
 .player_columns_2 {
-  grid-template-columns: repeat(2, 1fr);
+  @include mQuery(sp) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @include mQuery(tab) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .player_columns_3 {
-  grid-template-columns: repeat(3, 1fr);
+  @include mQuery(sp) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  @include mQuery(tab) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mQuery(pc) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .row {

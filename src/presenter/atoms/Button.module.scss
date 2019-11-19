@@ -1,4 +1,5 @@
 @import "../../style/value/colors";
+@import "../../style/responsive.scss";
 
 $buttonDeppari: 4px;
 
@@ -12,8 +13,14 @@ $buttonDeppari: 4px;
   box-sizing: content-box;
   cursor: pointer;
 
-  width: 100px;
   height: 50px;
+  width: 100px;
+
+  @include mQuery(sp) {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
   &:active {
     border-bottom: none;

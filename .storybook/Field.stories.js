@@ -6,4 +6,4 @@ export default { title: "Field" };
 
 export const withText = () => <Field label="文字">ああああああ</Field>;
 
-export const withInput = () => <Field label="文字"><Input /></Field>;
+export const withInput = () => <Field label="文字あああああ"><Input /></Field>;

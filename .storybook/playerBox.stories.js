@@ -12,7 +12,7 @@ export const normal = () => <PlayerBox playerName={"武田さん"}>ああああ�
 export const isCurrent = () => <PlayerBox playerName={"武田さん"} isCurrent={true}>ああああああ</PlayerBox>;
 
 export const withCard = () => (
-  <div style={{ display: "grid", "grid-template-columns": "repeat(3, 1fr)" }}>
+  <div>
     <PlayerBox playerName={"武田さん"} isCurrent={true}>
       <SymbolCardArea isSmall={true}>
         <SymbolCard isSmall={true} isOpen={true} symbolName={"bat"} />
@@ -29,18 +29,6 @@ export const withCard = () => (
         <SymbolCard isSmall={true} isOpen={true} symbolName={"rat"} />
         <SymbolCard isSmall={true} isOpen={true} symbolName={"rat"} />
 
-      </SymbolCardArea>
-      <SymbolCardArea cardListSize={21}>
-        {[...Array(21)].map((v, i) =>
-          <SymbolCard isOpen={true} symbolName={symbols[i % symbols.length]} key={i} />
-        )}
-      </SymbolCardArea>
-    </PlayerBox>
-    <PlayerBox playerName={"武田さん"} isCurrent={true}>
-      <SymbolCardArea isSmall={true}>
-        {[...Array(21)].map((v, i) =>
-          <SymbolCard isSmall={true} isOpen={true} symbolName={symbols[i % symbols.length]} key={i} />
-        )}
       </SymbolCardArea>
       <SymbolCardArea cardListSize={21}>
         {[...Array(21)].map((v, i) =>

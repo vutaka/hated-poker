@@ -1,5 +1,6 @@
 @import "../../style/value/colors";
 @import "../../style/value/grid";
+@import "../../style/responsive.scss";
 
 .row {
   width: 100%;
@@ -8,14 +9,30 @@
   margin-bottom: 40px;
   align-items: center;
   .label {
-    grid-column-start: 3;
-    grid-column-end: 6;
-
-    text-align: right;
-    padding-right: 30px;
+    font-weight: bold;
+    @include mQuery(sp) {
+      grid-column-start: 1;
+      grid-column-end: -1;
+    }
+    @include mQuery(tab) {
+      grid-column-start: 3;
+      grid-column-end: 6;
+      text-align: right;
+      padding-right: 30px;
+    }
   }
   .item {
-    grid-column-start: 6;
-    grid-column-end: 9;
+    @include mQuery(sp) {
+      grid-column-start: 1;
+      grid-column-end: -1;
+    }
+    @include mQuery(tab) {
+      grid-column-start: 6;
+      grid-column-end: 10;
+    }
+    @include mQuery(pc) {
+      grid-column-start: 6;
+      grid-column-end: 9;
+    }
   }
 }
