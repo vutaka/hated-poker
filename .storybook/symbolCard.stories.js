@@ -1,11 +1,21 @@
 import React from "react";
+import { withKnobs, boolean } from "@storybook/addon-knobs";
 import { SymbolCard } from "../src/presenter/atoms/SymbolCard";
 
-export default { title: "SymbolCard" };
+export default {
+  title: "SymbolCard",
+  decorators: [withKnobs]
+};
 
 export const normal = () => <>
   <div style={{ display: "grid", "grid-template-columns": "repeat(10, 1fr)", width: "300px" }}>
-    <SymbolCard isOpen={true} symbolName={"rat"} onClick={() => alert("rat")}/>
+    <SymbolCard isOpen={boolean("isOpen", false)} symbolName={"rat"} onClick={() => alert("rat")} />
+  </div>
+</>;
+
+export const many = () => <>
+  <div style={{ display: "grid", "grid-template-columns": "repeat(10, 1fr)", width: "300px" }}>
+    <SymbolCard isOpen={true} symbolName={"rat"} onClick={() => alert("rat")} />
     <SymbolCard isOpen={true} symbolName={"dog"} />
     <SymbolCard isOpen={true} symbolName={"snake"} />
     <SymbolCard isOpen={true} symbolName={"jellyfish"} />
